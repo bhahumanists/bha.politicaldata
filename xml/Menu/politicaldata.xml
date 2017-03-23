@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/mapit/settings</path>
+    <page_callback>CRM_Politicaldata_Form_Mapit</page_callback>
+    <title>Mapit</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+</menu>
