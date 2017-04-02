@@ -23,6 +23,8 @@ It looks up data in real time whenever a primary address is added or edited. Cur
 
 and it's still fairly hacky, particularly in that the custom field values are hard-coded (sorry). But works!
 
+Note: if pre-4.7.18 and using PayPal Pro, make sure to apply this PR first: https://github.com/civicrm/civicrm-core/commit/c9dbc47c1a676a05908675c9fe5a0b11f4562a79
+
 ## To use
 
 1. Install the extension.
