@@ -1,3 +1,9 @@
+## 2021-08-06
+
+Note that post-Brexit the ONS no longer supply the 'Regional Authority' data (it's technically a European region, apparently), so MapIt can't supply it either. They stopped supplying it in May 2021. It is possible to use the previous 'generation' of data by using the 'generation' parameter set to 42. eg: https://mapit.mysociety.org/postcode/b24qa.html?generation=42. This is not implemented in this extension.
+
+## Intro
+
 This extension looks up UK regional/political data from MapIt (https://mapit.mysociety.org/) and assigns it to custom fields. 
 This allows you to search for everyone in particular regions, or Parliamentary Constituencies, and set up smart groups etc.
 
