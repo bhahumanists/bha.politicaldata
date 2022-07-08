@@ -136,52 +136,21 @@ function politicaldata_civicrm_post($op, $objectName, $id, &$objectref){
 		}
 
 		//get API key from db (set via civicrm/mapit/settings)
-  	$result = civicrm_api3('Setting', 'get', array(
+  		$result = civicrm_api3('Setting', 'get', array(
 		  'sequential' => 1,
 		  'return' => array("mapitkey"),
 		));
 		
 		
 		$apikey = $result['values'][0]['mapitkey'];
-				
-		//check whether we're using lat/long or postcode
-		$usingLatLong = false;
-
-
-		//BHA: check if it's a local group
-		$contactType = civicrm_api3('Contact', 'get', array(
-		  'sequential' => 1,
-		  'return' => "contact_sub_type",
-		  'id' => $contact_id,
-		));
-		$contactType = $contactType[values][0]['contact_sub_type'][0];
-		if ($contactType == 'LocalGroup') {
-			$usingLatLong = true;
-		}
 		
-		if ($usingLatLong){
-			
-			$lat = $objectref->geo_code_1;
-			$long = $objectref->geo_code_2;
-			$url='https://mapit.mysociety.org/point/4326/' . $long . ',' . $lat;
-			
-			//if api key, use it. Otherwise this'll default to the no-api-key 50/day version	
-			if ($apikey) {
-				$url .= '?api_key=' . $apikey; 
-			}
-			
-		} else { //postcodes
-			
-			//tidy up postcode
-			$postcode=str_replace(' ','',$postcode);
-			
-			$url='https://mapit.mysociety.org/postcode/' . $postcode;
-			if ($apikey) {
-				$url .= '?api_key=' . $apikey; 
-			}
-			
+		//tidy up postcode
+		$postcode=str_replace(' ','',$postcode);
+
+		$url='https://mapit.mysociety.org/postcode/' . $postcode;
+		if ($apikey) {
+			$url .= '?api_key=' . $apikey; 
 		}
-		
 		
 		//fetch data from mapit
 
@@ -308,8 +277,8 @@ function politicaldata_civicrm_post($op, $objectName, $id, &$objectref){
 	 		 "custom_734" => $ukcountry, //UK Country
 		 );
               
-    //actually save to DB   		
-		$result = civicrm_api3('Contact', 'create', $customParams);
+ 	//save to DB   		
+	$result = civicrm_api3('Contact', 'create', $customParams);
 	}
 }
 
